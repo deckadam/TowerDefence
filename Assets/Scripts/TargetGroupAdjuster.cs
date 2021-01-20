@@ -6,14 +6,16 @@ public class TargetGroupAdjuster : MonoSingleton<TargetGroupAdjuster>
     public CinemachineTargetGroup targetGroup;
     public float targetSize;
 
+    //Submit to event
     private void Awake()
     {
-        GridGenerator.GridGenerationCompleted += Adjust;
+        GridGenerator.OnGridGenerationCompleted += Adjust;
     }
 
+    //Revoke submission from event
     private void OnDestroy()
     {
-        GridGenerator.GridGenerationCompleted -= Adjust;
+        GridGenerator.OnGridGenerationCompleted -= Adjust;
     }
 
     //Adjust target transform
@@ -26,6 +28,7 @@ public class TargetGroupAdjuster : MonoSingleton<TargetGroupAdjuster>
         }
     }
 
+    //Adding only the corners of the map to reduce the necessary work from the cinemachine
     private Transform[] GetCornerTransforms(Transform[,] targets)
     {
         var result = new Transform[4];

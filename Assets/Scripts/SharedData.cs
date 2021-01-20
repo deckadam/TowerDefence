@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SharedData : MonoSingleton<SharedData>
 {
     public GameObject cellPrefab;
+    public Transform mapParent;
+    public Transform traverserParent;
 }

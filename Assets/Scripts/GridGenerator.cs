@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
+    //Event to raise when grid generation is completed
+    public static event Action<Transform[,]> OnGridGenerationCompleted;
     [SerializeField] private GridData data;
-    public static event Action<Transform[,]> GridGenerationCompleted;
 
     public Vector3 cellCenterOffset;
     public Transform basePlane;
@@ -69,12 +70,15 @@ public class GridGenerator : MonoBehaviour
         var secondLength = cellPositions.GetLength(1);
         var allTransforms = new Transform[firstLength, secondLength];
 
+        var cellParent = SharedData.ins.mapParent;
+
         for (var i = 0; i < cellPositions.GetLength(0); i++)
         {
             for (var j = 0; j < cellPositions.GetLength(1); j++)
             {
                 var position = cellPositions[i, j];
                 var temp = Instantiate(cellPrefab, position, Quaternion.identity);
+                temp.transform.SetParent(cellParent);
                 allTransforms[i, j] = temp.transform;
             }
         }
@@ -87,10 +91,9 @@ public class GridGenerator : MonoBehaviour
     {
         var cellPositions = GetGridPositions();
         cells = GenerateCells(cellPositions);
-        OnGridGenerationCompleted(cells);
+        RaiseOnGridGenerationCompleted(cells);
     }
 
-   
 
 //Sets base plane size bigger than necessary to fill camera for mobile phone resolutions
     private Vector3 CalculateBasePlaneSize()
@@ -107,8 +110,8 @@ public class GridGenerator : MonoBehaviour
 
 
     //Raise the grid generation completed event and transmit the generated transforms to subscribers
-    private void OnGridGenerationCompleted(Transform[,] targets)
+    private void RaiseOnGridGenerationCompleted(Transform[,] targets)
     {
-        GridGenerationCompleted?.Invoke(targets);
+        OnGridGenerationCompleted?.Invoke(targets);
     }
 }

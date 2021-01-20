@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class RoadGenerator : MonoBehaviour
 {
+    public static event Action<Transform[]> OnRoadGenerationCompleted;
     public PathGenerationData data;
 
     private bool _wasLastTurnLeft;
@@ -15,17 +16,18 @@ public class RoadGenerator : MonoBehaviour
     private int _width;
     private int _height;
 
-    private List<Transform> _path;
     private bool[,] _pickedTiles;
+    private Transform _pathTileParent;
 
     private void Awake()
     {
-        GridGenerator.GridGenerationCompleted += GeneratePath;
+        _pathTileParent = SharedData.ins.mapParent;
+        GridGenerator.OnGridGenerationCompleted += GeneratePath;
     }
 
     private void OnDestroy()
     {
-        GridGenerator.GridGenerationCompleted -= GeneratePath;
+        GridGenerator.OnGridGenerationCompleted -= GeneratePath;
     }
 
     private void GeneratePath(Transform[,] cells)
@@ -34,15 +36,15 @@ public class RoadGenerator : MonoBehaviour
         _width = cells.GetLength(0);
         _height = cells.GetLength(1);
 
-        _path = new List<Transform>();
+        var path = new List<Transform>();
         _pickedTiles = new bool[_width, _height];
 
         var pathEntranceIndex = GetBottomEntrance();
 
-        CheckBeforeChange(pathEntranceIndex);
+        CheckBeforeChange(pathEntranceIndex, path);
 
         var pickedCell = PickCell(pathEntranceIndex);
-        CheckBeforeChange(pickedCell);
+        CheckBeforeChange(pickedCell, path);
 
         var status = false;
         while (!status)
@@ -65,13 +67,23 @@ public class RoadGenerator : MonoBehaviour
             if (IsCeilingReached(pickedCell))
                 break;
 
-            status = CheckBeforeChange(pickedCell);
+            status = CheckBeforeChange(pickedCell, path);
         }
 
-        ChangeCellWithPathTile(pickedCell);
+        ChangeCellWithPathTile(pickedCell, path);
+
+        var pathArray = path.ToArray();
+
+        if (pathArray.Length == 1)
+        {
+            throw new Exception("Path generation error or grid size too small");
+        }
+
+
+        RaiseOnRoadGenerationCompleted(pathArray);
     }
 
-    private bool CheckBeforeChange(Vector2Int index)
+    private bool CheckBeforeChange(Vector2Int index, List<Transform> path)
     {
         if (IsCeilingReached(index))
         {
@@ -79,17 +91,18 @@ public class RoadGenerator : MonoBehaviour
             return true;
         }
 
-        ChangeCellWithPathTile(index);
+        ChangeCellWithPathTile(index, path);
         return false;
     }
 
-    private void ChangeCellWithPathTile(Vector2Int index)
+    private void ChangeCellWithPathTile(Vector2Int index, List<Transform> path)
     {
         var pos = _currentCells[index.x, index.y].position;
         Destroy(_currentCells[index.x, index.y].gameObject);
         var pathTile = Instantiate(data.pathTile, pos, Quaternion.identity);
+        pathTile.transform.SetParent(_pathTileParent);
         _currentCells[index.x, index.y] = pathTile.transform;
-        _path.Add(pathTile.transform);
+        path.Add(pathTile.transform);
     }
 
     private Vector2Int PickCell(Vector2Int index)
@@ -145,6 +158,7 @@ public class RoadGenerator : MonoBehaviour
         if (index.x >= _width) return false;
         if (index.y <= 0) return false;
         if (index.y >= _height) return false;
+        
         return true;
     }
 
@@ -152,12 +166,17 @@ public class RoadGenerator : MonoBehaviour
     private Vector2Int GetBottomEntrance()
     {
         var width = _currentCells.GetLength(0);
-
         var index = Random.Range(1, width - 1);
+        
         _pickedTiles[index, 0] = true;
 
         return new Vector2Int(index, 0);
     }
 
     private bool IsCeilingReached(Vector2Int index) => index.y >= _height - 1;
+
+    private void RaiseOnRoadGenerationCompleted(Transform[] obj)
+    {
+        OnRoadGenerationCompleted?.Invoke(obj);
+    }
 }

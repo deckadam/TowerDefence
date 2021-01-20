@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,23 +33,23 @@ public class RoadGenerator : MonoBehaviour
         _currentCells = cells;
         _width = cells.GetLength(0);
         _height = cells.GetLength(1);
+
         _path = new List<Transform>();
         _pickedTiles = new bool[_width, _height];
 
         var pathEntranceIndex = GetBottomEntrance();
 
-        ChangeCellWithPath(pathEntranceIndex);
+        CheckBeforeChange(pathEntranceIndex);
 
         var pickedCell = PickCell(pathEntranceIndex);
+        CheckBeforeChange(pickedCell);
 
         var status = false;
         while (!status)
         {
-            ChangeCellWithPath(pickedCell);
-
             var previousCell = pickedCell;
             pickedCell = PickCell(pickedCell);
-            
+
             if (!IsInBorders(pickedCell))
             {
                 pickedCell = previousCell;
@@ -61,12 +62,28 @@ public class RoadGenerator : MonoBehaviour
                 pickedCell = previousCell;
             }
 
+            if (IsCeilingReached(pickedCell))
+                break;
 
-            status = IsCeilingReached(pickedCell);
+            status = CheckBeforeChange(pickedCell);
         }
+
+        ChangeCellWithPathTile(pickedCell);
     }
 
-    private void ChangeCellWithPath(Vector2Int index)
+    private bool CheckBeforeChange(Vector2Int index)
+    {
+        if (IsCeilingReached(index))
+        {
+            Debug.LogError(index);
+            return true;
+        }
+
+        ChangeCellWithPathTile(index);
+        return false;
+    }
+
+    private void ChangeCellWithPathTile(Vector2Int index)
     {
         var pos = _currentCells[index.x, index.y].position;
         Destroy(_currentCells[index.x, index.y].gameObject);
@@ -77,7 +94,6 @@ public class RoadGenerator : MonoBehaviour
 
     private Vector2Int PickCell(Vector2Int index)
     {
-        var backUp = index;
         var chance = Random.Range(0f, 1f);
 
         if (chance > data.rotationChance.Evaluate(_straightPathCount))
@@ -90,30 +106,20 @@ public class RoadGenerator : MonoBehaviour
             {
                 index.x -= 1;
             }
+
+            _straightPathCount = 0;
         }
         else
         {
             index.y += 1;
-            _pickedTiles[index.x, index.y] = true;
+
+            if (!IsCeilingReached(index))
+                _pickedTiles[index.x, index.y] = true;
+
             _straightPathCount++;
             return index;
         }
 
-        /*
-            if (!IsInBorders(index))
-            {
-                backUp.y += 1;
-    
-                return backUp;
-            }
-    */
-        if (_pickedTiles[index.x, index.y])
-        {
-            backUp.y += 1;
-            _pickedTiles[backUp.x, backUp.y] = true;
-
-            return backUp;
-        }
 
         _pickedTiles[index.x, index.y] = true;
         return index;
@@ -153,5 +159,5 @@ public class RoadGenerator : MonoBehaviour
         return new Vector2Int(index, 0);
     }
 
-    private bool IsCeilingReached(Vector2Int index) => index.y >= _height;
+    private bool IsCeilingReached(Vector2Int index) => index.y >= _height - 1;
 }

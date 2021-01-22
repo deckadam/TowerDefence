@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-    //Event to raise when grid generation is completed
-    public static event Action<Transform[,]> OnGridGenerationCompleted;
     [SerializeField] private GridData data;
 
     public Vector3 cellCenterOffset;
     public Transform basePlane;
 
 
-    private Transform[,] cells;
+    private Transform[,] _cells;
 
 
     //Debug
@@ -90,8 +88,8 @@ public class GridGenerator : MonoBehaviour
     private void Start()
     {
         var cellPositions = GetGridPositions();
-        cells = GenerateCells(cellPositions);
-        RaiseOnGridGenerationCompleted(cells);
+        _cells = GenerateCells(cellPositions);
+        GameEvents.OnGridGenerationCompleted(_cells);
     }
 
 
@@ -106,12 +104,5 @@ public class GridGenerator : MonoBehaviour
         var z = (rowCount * 2) * cellSize / 5;
 
         return new Vector3(x, 1, z);
-    }
-
-
-    //Raise the grid generation completed event and transmit the generated transforms to subscribers
-    private void RaiseOnGridGenerationCompleted(Transform[,] targets)
-    {
-        OnGridGenerationCompleted?.Invoke(targets);
     }
 }

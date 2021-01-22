@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameMenu : Menu
 {
@@ -12,6 +13,7 @@ public class InGameMenu : Menu
     [SerializeField] private int countDownBeginingNumber;
     [SerializeField] private float countDownDelay;
     [SerializeField] private float lastFadeDuration;
+    [SerializeField] private Button startTheGameButton;
 
     private TextMeshProUGUI _countDownText;
 
@@ -20,14 +22,18 @@ public class InGameMenu : Menu
     {
         base.Awake();
         _countDownText = GetComponentInChildren<TextMeshProUGUI>();
-        GameManager.OnGameStarted += StartCountDown;
-        OnShowCompleted += () => GameManager.ins.openingMenu.Hide();
+        GameEvents.OnGameStarted += StartCountDown;
+        OnShowCompleted += () =>
+        {
+            GameManager.ins.openingMenu.Hide();
+            startTheGameButton.interactable = true;
+        };
     }
 
     //Revoke submission to necessary events 
     private void OnDestroy()
     {
-        GameManager.OnGameStarted -= StartCountDown;
+        GameEvents.OnGameStarted -= StartCountDown;
     }
 
     //Start the count down coroutine

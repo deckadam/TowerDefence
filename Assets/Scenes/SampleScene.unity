@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransitionDuration: 0.75
   panelTransitionDelay: 0.25
+  startTheGameButton: {fileID: 1215033466}
 --- !u!1 &909977657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,7 +1385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1825, y: 0}
+  m_AnchoredPosition: {x: -2000, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1197362372
@@ -2148,10 +2149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6531bb103c0ccc46a942e70ebe49b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTheGameButton: {fileID: 1215033466}
-  inGamePanel: {fileID: 2127420938}
-  failMenu: {fileID: 1112781674}
   openingMenu: {fileID: 874544579}
+  inGameMenu: {fileID: 2127420938}
+  failMenu: {fileID: 1112781674}
 --- !u!4 &1768434851
 Transform:
   m_ObjectHideFlags: 0
@@ -2760,3 +2760,4 @@ MonoBehaviour:
   countDownBeginingNumber: 3
   countDownDelay: 0.5
   lastFadeDuration: 0.75
+  startTheGameButton: {fileID: 0}

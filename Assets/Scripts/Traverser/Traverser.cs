@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Traverser : MonoBehaviour
 {
-    public static event Action OnFinalDestinationReached;
-
     private Transform _nextNode;
     private Transform[] _path;
     private int _pathLength;
@@ -13,13 +11,13 @@ public class Traverser : MonoBehaviour
     //Submit to on game failed event to stop movement when raised
     private void Awake()
     {
-        GameManager.OnGameFailed += Stop;
+        GameEvents.OnGameFailed += Stop;
     }
 
     //Revoke submission to prevent null referenec error
     private void OnDestroy()
     {
-        GameManager.OnGameFailed -= Stop;
+        GameEvents.OnGameFailed -= Stop;
     }
 
     //Stop all coroutines is used because movement operation is done with coroutines
@@ -55,7 +53,7 @@ public class Traverser : MonoBehaviour
                 var isRoadFinished = PickNextTileIfPossible(currentNodeIndex++);
                 if (isRoadFinished)
                 {
-                    RaiseOnFinalDestinationReached();
+                    GameEvents.OnFinalDestinationReached?.Invoke();
                     break;
                 }
             }
@@ -70,10 +68,5 @@ public class Traverser : MonoBehaviour
         if (index + 1 >= _pathLength) return true;
         _nextNode = _path[index + 1];
         return false;
-    }
-
-    private void RaiseOnFinalDestinationReached()
-    {
-        OnFinalDestinationReached?.Invoke();
     }
 }

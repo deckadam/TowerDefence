@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class RoadGenerator : MonoBehaviour
 {
-    public static event Action<Transform[]> OnRoadGenerationCompleted;
     public PathGenerationData data;
 
     private bool _wasLastTurnLeft;
@@ -22,12 +21,12 @@ public class RoadGenerator : MonoBehaviour
     private void Awake()
     {
         _pathTileParent = SharedData.ins.mapParent;
-        GridGenerator.OnGridGenerationCompleted += GeneratePath;
+        GameEvents.OnGridGenerationCompleted += GeneratePath;
     }
 
     private void OnDestroy()
     {
-        GridGenerator.OnGridGenerationCompleted -= GeneratePath;
+        GameEvents.OnGridGenerationCompleted -= GeneratePath;
     }
 
     private void GeneratePath(Transform[,] cells)
@@ -80,7 +79,7 @@ public class RoadGenerator : MonoBehaviour
         }
 
 
-        RaiseOnRoadGenerationCompleted(pathArray);
+        GameEvents.OnRoadGenerationCompleted?.Invoke(pathArray);
     }
 
     private bool CheckBeforeChange(Vector2Int index, List<Transform> path)
@@ -158,7 +157,7 @@ public class RoadGenerator : MonoBehaviour
         if (index.x >= _width) return false;
         if (index.y <= 0) return false;
         if (index.y >= _height) return false;
-        
+
         return true;
     }
 
@@ -167,16 +166,11 @@ public class RoadGenerator : MonoBehaviour
     {
         var width = _currentCells.GetLength(0);
         var index = Random.Range(1, width - 1);
-        
+
         _pickedTiles[index, 0] = true;
 
         return new Vector2Int(index, 0);
     }
 
     private bool IsCeilingReached(Vector2Int index) => index.y >= _height - 1;
-
-    private void RaiseOnRoadGenerationCompleted(Transform[] obj)
-    {
-        OnRoadGenerationCompleted?.Invoke(obj);
-    }
 }

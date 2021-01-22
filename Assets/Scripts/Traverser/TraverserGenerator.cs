@@ -13,17 +13,17 @@ public class TraverserGenerator : MonoBehaviour
     private void Awake()
     {
         _traverserParent = SharedData.ins.traverserParent;
-        RoadGenerator.OnRoadGenerationCompleted += OnRoadGenerationCompleted;
+        GameEvents.OnRoadGenerationCompleted += OnRoadGenerationCompleted;
         InGameMenu.OnCountDownCompleted += StartTraverserGeneration;
-        GameManager.OnGameFailed += Stop;
+        GameEvents.OnGameFailed += Stop;
     }
 
     //Revoke submission from the events
     private void OnDestroy()
     {
-        RoadGenerator.OnRoadGenerationCompleted -= OnRoadGenerationCompleted;
+        GameEvents.OnRoadGenerationCompleted -= OnRoadGenerationCompleted;
         InGameMenu.OnCountDownCompleted -= StartTraverserGeneration;
-        GameManager.OnGameFailed -= Stop;
+        GameEvents.OnGameFailed -= Stop;
     }
 
     private void Stop()

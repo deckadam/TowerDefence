@@ -9,13 +9,13 @@ public class TargetGroupAdjuster : MonoSingleton<TargetGroupAdjuster>
     //Submit to event
     private void Awake()
     {
-        GridGenerator.OnGridGenerationCompleted += Adjust;
+        GameEvents.OnGridGenerationCompleted += Adjust;
     }
 
     //Revoke submission from event
     private void OnDestroy()
     {
-        GridGenerator.OnGridGenerationCompleted -= Adjust;
+        GameEvents.OnGridGenerationCompleted -= Adjust;
     }
 
     //Adjust target transform

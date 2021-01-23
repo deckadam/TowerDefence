@@ -5,52 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87160c5c-b97c-4d8e-8f37-43f0788ca4d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/TowerMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/TowerMaterial.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/TowerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/TowerData.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Traverser.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Traverser.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/BaseCell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/BaseCell.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PathCell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PathCell.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Tower.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Tower.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Traverser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Traverser.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameEvents.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/RoadGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/RoadGenerator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/FailMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/FailMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/InGameMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/InGameMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/Menu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/Menu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/OpeningMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/OpeningMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/OpeningMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/OpeningMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SharedData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/SharedData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SharedData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/SharedData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,22 +64,24 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/MapGeneration/RoadGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Menus/OpeningMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Menus/InGameMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathTile.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/MoneySystems/MoneyTracker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/DataTracker.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nJHf3H9FzuJpwN0EsxKkHEjZUS" />
@@ -123,7 +97,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="do_not_show_solution_notification" value="true" />
-    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">

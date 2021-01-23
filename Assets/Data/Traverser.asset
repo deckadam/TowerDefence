@@ -47,5 +47,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   traverser: {fileID: -5944425281945481483, guid: e03d7b0b03517144fb25eae9ac638dd4,
     type: 3}
-  speed: 2
-  health: 50
+  speed: 1
+  health: 30
+  moneyWorth: 20
+  scoreWorth: 2

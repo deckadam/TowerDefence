@@ -13,7 +13,7 @@ public class GameEvents
 
     public static Action OnGenerateTowerButtonPressed;
 
-    public static Action<int> OnMoneyCountChanged;
-
     public static Action OnCountDownCompleted;
+
+    public static Action<int, int> OnTraverserDeath;
 }

@@ -7,4 +7,6 @@ public class TraverserData : ScriptableObject
     public Traverser traverser;
     public float speed;
     public int health;
+    public int moneyWorth;
+    public int scoreWorth;
 }

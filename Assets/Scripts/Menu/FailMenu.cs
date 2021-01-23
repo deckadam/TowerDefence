@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class FailMenu : Menu
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private string scoreHeader;
     [SerializeField] private Button resetButton;
 
     [SerializeField] private float delayBeforeReset;
@@ -17,7 +18,11 @@ public class FailMenu : Menu
     {
         base.Awake();
         resetButton.interactable = false;
-        OnShowCompleted += () => resetButton.interactable = true;
+        OnShowCompleted += () =>
+        {
+            scoreText.text = scoreHeader + ScoreManager.ins.GetScore();
+            resetButton.interactable = true;
+        };
     }
 
     //Triggered from ui event

@@ -8,6 +8,24 @@ public class Tower : MonoBehaviour
     private float _range;
     private int _damage;
 
+    //Submit to game failing event to stop the towers in that situation
+    private void Awake()
+    {
+        GameEvents.OnGameFailed += Stop;
+    }
+
+    //Revoking submission from the game failing event to prevent destroyed towers null reference error
+    private void OnDestroy()
+    {
+        GameEvents.OnGameFailed -= Stop;
+    }
+
+    //Using a separate method to submit to events to be able to revoke submission later
+    private void Stop()
+    {
+        StopAllCoroutines();
+    }
+
     //Cache the data and start the coroutine
     public void Initialize(float range, int damage)
     {
@@ -36,14 +54,13 @@ public class Tower : MonoBehaviour
                     {
                         _lockedTraverser[0] = null;
                     }
+
+                    yield return waiter;
                 }
                 else
                 {
                     _lockedTraverser[0] = null;
-                    continue;
                 }
-
-                yield return waiter;
             }
             else
             {
@@ -66,6 +83,7 @@ public class Tower : MonoBehaviour
     }
 
 
+    //Shooting the projectile operation boolean return value is coming from the death situation of the traverser
     private bool ShootProjectile(Transform target)
     {
         if (target.gameObject.activeSelf)
@@ -73,6 +91,7 @@ public class Tower : MonoBehaviour
         return true;
     }
 
+    //For visualizing who the target is 
     private void OnDrawGizmos()
     {
         if (_lockedTraverser[0] != null)

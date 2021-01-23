@@ -14,12 +14,14 @@ public class TowerGenerator : MonoBehaviour
     private List<Transform> _currentTowerBatch;
 
     private int _currentSpawnLevel;
+    private int _currentTowerCost;
 
     //Submit to events 
     private void Awake()
     {
         GameEvents.OnGenerateTowerButtonPressed += SpawnNewTower;
         GameEvents.OnNeighboursGenerated += OnNeighboursGenerated;
+        _currentTowerCost = data.towerLevels[0].cost;
     }
 
     //Revoke submission from events
@@ -40,6 +42,7 @@ public class TowerGenerator : MonoBehaviour
     //Possibility is check by available slots and money
     private void SpawnNewTower()
     {
+        if (!MoneyManager.ins.IsAffordable(_currentTowerCost)) return;
         if (_availableTowerSpots.Count == 0) return;
 
         var temp = RetrieveRandomNeighbour();
@@ -50,18 +53,18 @@ public class TowerGenerator : MonoBehaviour
         CreateTower(pos, temp);
 
         CheckCurrentLevelStatus();
+        MoneyManager.ins.ReduceMoney(_currentTowerCost);
     }
 
     //Actual tower creation part
     private void CreateTower(Vector3 pos, Transform target)
     {
         var currentData = data.towerLevels[_currentSpawnLevel];
-        
-        var newTower = Instantiate(data.towerLevels[_currentSpawnLevel].prefab, pos, Quaternion.identity);
 
+        var newTower = Instantiate(data.towerLevels[_currentSpawnLevel].prefab, pos, Quaternion.identity);
         newTower.transform.SetParent(target, true);
         newTower.Initialize(currentData.range, currentData.damagePerSecond);
-        
+
         _currentTowerBatch.Add(target);
     }
 
@@ -90,19 +93,12 @@ public class TowerGenerator : MonoBehaviour
     //Resets the slot data and currently active tower data
     private void CheckCurrentLevelStatus()
     {
-        if (_availableTowerSpots.Count == 0)
-        {
-            if (data.towerLevels.Length <= _currentSpawnLevel + 1) return;
-            _currentSpawnLevel++;
+        if (_availableTowerSpots.Count != 0) return;
+        if (data.towerLevels.Length <= _currentSpawnLevel + 1) return;
 
-            _availableTowerSpots = new List<Transform>(_currentTowerBatch);
-            _currentTowerBatch.Clear();
-        }
-    }
-
-    //For debug purpose
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Space)) SpawnNewTower();
+        _currentSpawnLevel++;
+        _currentTowerCost = data.towerLevels[_currentSpawnLevel].cost;
+        _availableTowerSpots = new List<Transform>(_currentTowerBatch);
+        _currentTowerBatch.Clear();
     }
 }

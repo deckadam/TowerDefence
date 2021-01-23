@@ -67,6 +67,6 @@ public class TraverserGenerator : MonoBehaviour
         var traverser = data;
         var newTraverser = Instantiate(traverser.traverser, Vector3.zero, Quaternion.identity);
         newTraverser.transform.SetParent(_traverserParent);
-        newTraverser.Initialize(_generatedPath, traverser.speed, traverser.health);
+        newTraverser.Initialize(_generatedPath, traverser);
     }
 }

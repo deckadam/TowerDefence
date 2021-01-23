@@ -1,28 +1,37 @@
 ﻿using System;
+using TMPro;
 using UnityEditor.Presets;
 using UnityEngine;
 
 public class MoneyManager : MonoSingleton<MoneyManager>
 {
+    [SerializeField] private TextMeshProUGUI displayPanel;
+    [SerializeField] private string header;
     public int startingMoney;
 
     private int _currentMoney;
 
     private void Awake()
     {
-        AddMoney(startingMoney);
+        GameEvents.OnTraverserDeath += AddMoney;
     }
 
-    public void AddMoney(int amount)
+    private void OnDestroy()
     {
-        _currentMoney += amount;
+        GameEvents.OnTraverserDeath -= AddMoney;
+    }
+
+    private void Start()
+    {
+        AddMoney(startingMoney, 0);
+    }
+
+    private void AddMoney(int moneyGained, int scoreGained)
+    {
+        _currentMoney += moneyGained;
         RaiseMoneyCountChangedEvent();
     }
 
-    public bool IsAffordable(int amount)
-    {
-        return amount < _currentMoney;
-    }
 
     public void ReduceMoney(int amount)
     {
@@ -32,12 +41,8 @@ public class MoneyManager : MonoSingleton<MoneyManager>
 
     private void RaiseMoneyCountChangedEvent()
     {
-        GameEvents.OnMoneyCountChanged?.Invoke(_currentMoney);
+        displayPanel.text = header + _currentMoney;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M)) AddMoney(100);
-        if (Input.GetKeyDown(KeyCode.D)) ReduceMoney(100);
-    }
+    
+    public bool IsAffordable(int amount) => amount <= _currentMoney;
 }

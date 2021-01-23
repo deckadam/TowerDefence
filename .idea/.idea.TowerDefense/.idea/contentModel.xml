@@ -28,7 +28,7 @@
             <e p="GameEvents.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="MoneyManager.cs" t="Include" />
-            <e p="MoneyTracker.cs" t="Include" />
+            <e p="ScoreManager.cs" t="Include" />
             <e p="SharedData.cs" t="Include" />
           </e>
           <e p="MapGeneration" t="Include">

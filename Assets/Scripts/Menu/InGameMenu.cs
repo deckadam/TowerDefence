@@ -80,7 +80,6 @@ public class InGameMenu : Menu
         countDownText.transform.localScale = Vector3.one * 0.5f;
         countDownText.transform.DOScale(1f, 0.8f);
     }
-
     private void ShowInGameUI()
     {
         bottomPanel.DOAnchorPos(Vector2.zero, bottomPanelAnimationDuration).OnComplete(() => randomTowerGenerationButton.interactable = true);

@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Traverser : MonoBehaviour
 {
+    [SerializeField] private Image healthBar;
+
     private Transform _nextNode;
     private Transform[] _path;
     private int _pathLength;
+    private int _maxHealth;
+    private int _currentHealth;
 
     //Submit to on game failed event to stop movement when raised
     private void Awake()
@@ -26,12 +31,16 @@ public class Traverser : MonoBehaviour
         StopAllCoroutines();
     }
 
-
     //Cache the necessary data and start the movement coroutine
-    public void Initialize(Transform[] path, float speed)
+    public void Initialize(Transform[] path, float speed, int health)
     {
         _path = path;
         _pathLength = path.Length;
+        _maxHealth = health;
+        _currentHealth = health;
+
+        AdjustHealthBar();
+
         transform.position = _path[0].position + Vector3.down;
         StartCoroutine(Traverse(speed));
     }
@@ -53,7 +62,7 @@ public class Traverser : MonoBehaviour
                 var isRoadFinished = PickNextTileIfPossible(currentNodeIndex++);
                 if (isRoadFinished)
                 {
-                    GameEvents.OnFinalDestinationReached?.Invoke();
+                    // GameEvents.OnFinalDestinationReached?.Invoke();
                     break;
                 }
             }
@@ -68,5 +77,23 @@ public class Traverser : MonoBehaviour
         if (index + 1 >= _pathLength) return true;
         _nextNode = _path[index + 1];
         return false;
+    }
+
+    //Apply damage to traverser and check if it's still alive
+    public bool TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        AdjustHealthBar();
+        Debug.LogError(_currentHealth);
+        if (_currentHealth > 0) return false;
+        Destroy(gameObject);
+        return true;
+    }
+
+    //Set the fill ratio of the health bar
+    private void AdjustHealthBar()
+    {
+        var ratio = (float)_currentHealth / (float)_maxHealth;
+        healthBar.fillAmount = ratio;
     }
 }

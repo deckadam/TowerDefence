@@ -24,27 +24,37 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="GameEvents.cs" t="Include" />
-          <e p="GameManager.cs" t="Include" />
+          <e p="GeneralSystems" t="Include">
+            <e p="GameEvents.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="MoneyManager.cs" t="Include" />
+            <e p="MoneyTracker.cs" t="Include" />
+            <e p="SharedData.cs" t="Include" />
+          </e>
           <e p="MapGeneration" t="Include">
             <e p="GridData.cs" t="Include" />
             <e p="GridGenerator.cs" t="Include" />
             <e p="PathGenerationData.cs" t="Include" />
-            <e p="RoadGenerator.cs" t="Include" />
+            <e p="PathGenerator.cs" t="Include" />
           </e>
-          <e p="Menus" t="Include">
+          <e p="Menu" t="Include">
             <e p="FailMenu.cs" t="Include" />
             <e p="InGameMenu.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
             <e p="OpeningMenu.cs" t="Include" />
           </e>
-          <e p="SharedData.cs" t="Include" />
+          <e p="Tower" t="Include">
+            <e p="Tower.cs" t="Include" />
+            <e p="TowerData.cs" t="Include" />
+            <e p="TowerGenerator.cs" t="Include" />
+          </e>
           <e p="Traverser" t="Include">
             <e p="Traverser.cs" t="Include" />
             <e p="TraverserData.cs" t="Include" />
             <e p="TraverserGenerator.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
+            <e p="Logger.cs" t="Include" />
             <e p="MonoSingleton.cs" t="Include" />
             <e p="TargetGroupAdjuster.cs" t="Include" />
           </e>

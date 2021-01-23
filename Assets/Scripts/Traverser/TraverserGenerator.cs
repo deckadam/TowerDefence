@@ -14,7 +14,7 @@ public class TraverserGenerator : MonoBehaviour
     {
         _traverserParent = SharedData.ins.traverserParent;
         GameEvents.OnRoadGenerationCompleted += OnRoadGenerationCompleted;
-        InGameMenu.OnCountDownCompleted += StartTraverserGeneration;
+        GameEvents.OnCountDownCompleted += StartTraverserGeneration;
         GameEvents.OnGameFailed += Stop;
     }
 
@@ -22,7 +22,7 @@ public class TraverserGenerator : MonoBehaviour
     private void OnDestroy()
     {
         GameEvents.OnRoadGenerationCompleted -= OnRoadGenerationCompleted;
-        InGameMenu.OnCountDownCompleted -= StartTraverserGeneration;
+        GameEvents.OnCountDownCompleted -= StartTraverserGeneration;
         GameEvents.OnGameFailed -= Stop;
     }
 
@@ -67,6 +67,6 @@ public class TraverserGenerator : MonoBehaviour
         var traverser = data;
         var newTraverser = Instantiate(traverser.traverser, Vector3.zero, Quaternion.identity);
         newTraverser.transform.SetParent(_traverserParent);
-        newTraverser.Initialize(_generatedPath, traverser.speed);
+        newTraverser.Initialize(_generatedPath, traverser.speed, traverser.health);
     }
 }

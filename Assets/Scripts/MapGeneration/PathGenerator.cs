@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoadGenerator : MonoBehaviour
+public class PathGenerator : MonoBehaviour
 {
     public PathGenerationData data;
 
@@ -17,6 +17,7 @@ public class RoadGenerator : MonoBehaviour
 
     private bool[,] _pickedTiles;
     private Transform _pathTileParent;
+    private List<Transform> _neighbours;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class RoadGenerator : MonoBehaviour
         _width = cells.GetLength(0);
         _height = cells.GetLength(1);
 
+        _neighbours = new List<Transform>();
+
         var path = new List<Transform>();
         _pickedTiles = new bool[_width, _height];
 
@@ -51,13 +54,13 @@ public class RoadGenerator : MonoBehaviour
             var previousCell = pickedCell;
             pickedCell = PickCell(pickedCell);
 
-            if (!IsInBorders(pickedCell))
+            if (!IsInBorders(pickedCell.x, pickedCell.y))
             {
                 pickedCell = previousCell;
                 continue;
             }
 
-            if (IsWallReached(pickedCell))
+            if (IsWallReached(pickedCell.x))
             {
                 previousCell.y += 1;
                 pickedCell = previousCell;
@@ -78,7 +81,7 @@ public class RoadGenerator : MonoBehaviour
             throw new Exception("Path generation error or grid size too small");
         }
 
-
+        GameEvents.OnNeighboursGenerated?.Invoke(_neighbours);
         GameEvents.OnRoadGenerationCompleted?.Invoke(pathArray);
     }
 
@@ -96,13 +99,44 @@ public class RoadGenerator : MonoBehaviour
 
     private void ChangeCellWithPathTile(Vector2Int index, List<Transform> path)
     {
-        var pos = _currentCells[index.x, index.y].position;
-        Destroy(_currentCells[index.x, index.y].gameObject);
+        var temp = _currentCells[index.x, index.y];
+        var pos = temp.position;
+        Destroy(temp.gameObject);
+
+        CollectNeighbours(index);
+
+        if (_neighbours.Contains(temp))
+        {
+            _neighbours.Remove(temp);
+        }
+
         var pathTile = Instantiate(data.pathTile, pos, Quaternion.identity);
         pathTile.transform.SetParent(_pathTileParent);
         _currentCells[index.x, index.y] = pathTile.transform;
         path.Add(pathTile.transform);
     }
+
+    private void CollectNeighbours(Vector2Int index)
+    {
+        AddNeighbourIfPossible(index.x + 1, index.y);
+        AddNeighbourIfPossible(index.x - 1, index.y);
+        AddNeighbourIfPossible(index.x, index.y + 1);
+        AddNeighbourIfPossible(index.x, index.y - 1);
+    }
+
+    private void AddNeighbourIfPossible(int x, int y)
+    {
+        if (!IsNeighbourInBorders(x, y)) return;
+        if (_pickedTiles[x, y]) return;
+        AddNeighbourIfNotAdded(_currentCells[x, y]);
+    }
+
+    private void AddNeighbourIfNotAdded(Transform neighbour)
+    {
+        if (!_neighbours.Contains(neighbour))
+            _neighbours.Add(neighbour);
+    }
+
 
     private Vector2Int PickCell(Vector2Int index)
     {
@@ -143,20 +177,30 @@ public class RoadGenerator : MonoBehaviour
         return chance > 0.5f;
     }
 
-    private bool IsWallReached(Vector2Int index)
+    private bool IsWallReached(int x)
     {
-        if (index.x <= 1) return true;
-        if (index.x >= _width - 1) return true;
+        if (x <= 1) return true;
+        if (x >= _width - 1) return true;
 
         return false;
     }
 
-    private bool IsInBorders(Vector2Int index)
+    private bool IsInBorders(int x, int y)
     {
-        if (index.x <= 0) return false;
-        if (index.x >= _width) return false;
-        if (index.y <= 0) return false;
-        if (index.y >= _height) return false;
+        if (x <= 0) return false;
+        if (x >= _width) return false;
+        if (y <= 0) return false;
+        if (y >= _height) return false;
+
+        return true;
+    }
+
+    private bool IsNeighbourInBorders(int x, int y)
+    {
+        if (x < 0) return false;
+        if (x > _width) return false;
+        if (y < 0) return false;
+        if (y >= _height) return false;
 
         return true;
     }

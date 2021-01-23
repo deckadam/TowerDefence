@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public OpeningMenu openingMenu;
-    public InGameMenu inGameMenu;
-    public FailMenu failMenu;
+    [SerializeField] private OpeningMenu openingMenu;
+    [SerializeField] private InGameMenu inGameMenu;
+    [SerializeField] private FailMenu failMenu;
 
     //Disable the start the game button until preparations are completed
     //Submit to road generation completed event
@@ -27,12 +27,6 @@ public class GameManager : MonoSingleton<GameManager>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }
-
-    //Event raiser for game started
-    public void RaiseOnGameStarted()
-    {
-        openingMenu.Hide(GameEvents.OnGameStarted);
     }
 
     //Hide the menus other than fail menu 

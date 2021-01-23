@@ -10,7 +10,7 @@ public class OpeningMenu : Menu
     {
         base.Awake();
         GameEvents.OnRoadGenerationCompleted += EnableStartTheGameButton;
-        startTheGameButton.interactable = false;    
+        startTheGameButton.interactable = false;
     }
 
     private void OnDestroy()
@@ -24,9 +24,8 @@ public class OpeningMenu : Menu
     }
 
     //Triggered from ui event
-    public void StartTheGame(Transform[] param)
+    public void StartTheGame()
     {
-        GameEvents.OnGameStarted?.Invoke();
-        Hide();
+        Hide(GameEvents.OnGameStarted);
     }
 }

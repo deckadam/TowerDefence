@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391d5837b23d4be1aa697973412cf5a9, type: 3}
+  m_Name: TowerData
+  m_EditorClassIdentifier: 
+  towerLevels:
+  - prefab: {fileID: 7586416167574296073, guid: 6e2be4a9616d4554b9348f2a9542f097,
+      type: 3}
+    cost: 5
+    damagePerSecond: 10
+    range: 1.5
+  - prefab: {fileID: 7586416167574296073, guid: 45b74f3c8f79ace488910b6ad8c74960,
+      type: 3}
+    cost: 15
+    damagePerSecond: 20
+    range: 2
+  - prefab: {fileID: 7586416167574296073, guid: 82d0091707ff1f741b093c66f6c96cce,
+      type: 3}
+    cost: 45
+    damagePerSecond: 40
+    range: 2.5
+  - prefab: {fileID: 7586416167574296073, guid: b22830e19920cf14197d450011f13062,
+      type: 3}
+    cost: 90
+    damagePerSecond: 75
+    range: 3
+  - prefab: {fileID: 7586416167574296073, guid: 130f9adf3d45cd04a8a1891a959d9ac3,
+      type: 3}
+    cost: 150
+    damagePerSecond: 100
+    range: 3.5

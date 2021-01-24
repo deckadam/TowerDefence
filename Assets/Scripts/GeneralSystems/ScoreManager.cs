@@ -19,15 +19,11 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         GameEvents.OnTraverserDeath -= AddScore;
     }
 
-
-    public void AddScore(int moneyGained, int scoreGained)
+    private void AddScore(int moneyGained)
     {
-        _currentScore += scoreGained;
+        _currentScore++;
         displayPanel.text = header + _currentScore;
     }
 
-    public int GetScore()
-    {
-        return _currentScore;
-    }
+    public int GetScore() => _currentScore;
 }

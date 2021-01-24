@@ -5,6 +5,9 @@ public class TowerData : ScriptableObject
 {
     public TowerLevel[] towerLevels;
 
+    [Space]
+    public Bullet bulletPrefab;
+
     [System.Serializable]
     public struct TowerLevel
     {
@@ -12,5 +15,8 @@ public class TowerData : ScriptableObject
         public int cost;
         public int damagePerSecond;
         public float range;
+        
+        [Tooltip("Lower is faster")]
+        public float attackDuration;
     }
 }

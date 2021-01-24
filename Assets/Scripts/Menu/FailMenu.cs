@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class FailMenu : Menu
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private string scoreHeader;
     [SerializeField] private Button resetButton;
 
+    [SerializeField] private string scoreHeader;
     [SerializeField] private float delayBeforeReset;
 
     //Overrided for setting the reset button not interactable

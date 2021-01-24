@@ -18,29 +18,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 2
-      inSlope: 0.011480181
-      outSlope: 0.011480181
+      inSlope: -0.0019162615
+      outSlope: -0.0019162615
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.14780474
-    - serializedVersion: 3
-      time: 20
-      value: 0.5
-      inSlope: -0.20520295
-      outSlope: -0.0062375003
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.044387437
-      outWeight: 0
+      outWeight: 0.0393653
     - serializedVersion: 3
       time: 100
       value: 0.001
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      inSlope: -0.00030919668
+      outSlope: -0.00030919668
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.040824644
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -48,6 +39,5 @@ MonoBehaviour:
   traverser: {fileID: -5944425281945481483, guid: e03d7b0b03517144fb25eae9ac638dd4,
     type: 3}
   speed: 1
-  health: 30
+  health: 100
   moneyWorth: 20
-  scoreWorth: 2

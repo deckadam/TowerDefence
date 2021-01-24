@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
     private Collider[] _lockedTraverser;
+    private Bullet _bulletPreab;
     private float _range;
     private int _damage;
+    private float _attackDuration;
 
     //Submit to game failing event to stop the towers in that situation
     private void Awake()
@@ -27,12 +29,15 @@ public class Tower : MonoBehaviour
     }
 
     //Cache the data and start the coroutine
-    public void Initialize(float range, int damage)
+    public void Initialize(TowerData data, int level)
     {
-        _range = range;
-        _damage = damage;
+        _attackDuration = data.towerLevels[level].attackDuration;
+        _damage = data.towerLevels[level].damagePerSecond;
+        _range = data.towerLevels[level].range;
+        
         _lockedTraverser = new Collider[1];
-
+        _bulletPreab = data.bulletPrefab;
+        
         StartCoroutine(SearchForTraverser());
     }
 
@@ -41,7 +46,7 @@ public class Tower : MonoBehaviour
     //If dead or left the range pick a new one and lock onto it
     private IEnumerator SearchForTraverser()
     {
-        var waiter = new WaitForSeconds(1f);
+        var waiter = new WaitForSeconds(_attackDuration);
         while (true)
         {
             if (_lockedTraverser[0] != null)
@@ -87,8 +92,18 @@ public class Tower : MonoBehaviour
     private bool ShootProjectile(Transform target)
     {
         if (target.gameObject.activeSelf)
+        {
+            CreateBullet(target);
             return target.GetComponent<Traverser>().TakeDamage(_damage);
+        }
+
         return true;
+    }
+
+    private void CreateBullet(Transform target)
+    {
+        var newBullet = Instantiate(_bulletPreab, transform.position, Quaternion.identity);
+        newBullet.Initialize(target);
     }
 
     //For visualizing who the target is 

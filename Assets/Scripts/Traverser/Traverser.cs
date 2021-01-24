@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,11 @@ public class Traverser : MonoBehaviour
     [SerializeField] private Image healthBar;
 
     private Transform _nextNode;
-    private Transform[] _path;
+    private List<Transform> _path;
     private int _pathLength;
     private int _maxHealth;
     private int _currentHealth;
     private int _moneyWorth;
-    private int _scoreWorth;
 
     //Submit to on game failed event to stop movement when raised
     private void Awake()
@@ -34,14 +34,13 @@ public class Traverser : MonoBehaviour
     }
 
     //Cache the necessary data and start the movement coroutine
-    public void Initialize(Transform[] path, TraverserData data)
+    public void Initialize(List<Transform> path, TraverserData data)
     {
         _path = path;
-        _pathLength = path.Length;
+        _pathLength = path.Count;
         _maxHealth = data.health;
         _currentHealth = data.health;
         _moneyWorth = data.moneyWorth;
-        _scoreWorth = data.scoreWorth;
         AdjustHealthBar();
 
         transform.position = _path[0].position + Vector3.down;
@@ -89,7 +88,7 @@ public class Traverser : MonoBehaviour
         AdjustHealthBar();
         if (_currentHealth > 0) return false;
         Destroy(gameObject);
-        GameEvents.OnTraverserDeath?.Invoke(_moneyWorth, _scoreWorth);
+        GameEvents.OnTraverserDeath?.Invoke(_moneyWorth);
         return true;
     }
 

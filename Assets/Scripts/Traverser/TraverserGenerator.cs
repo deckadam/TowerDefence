@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -6,14 +7,14 @@ public class TraverserGenerator : MonoBehaviour
 {
     [SerializeField] private TraverserData data;
 
-    private Transform[] _generatedPath;
+    private List<Transform> _generatedPath;
     private Transform _traverserParent;
 
     //Submit to on road generation events and cache the necessary data
     private void Awake()
     {
         _traverserParent = SharedData.ins.traverserParent;
-        GameEvents.OnRoadGenerationCompleted += OnRoadGenerationCompleted;
+        GameEvents.OnPathGenerationCompleted += OnPathGenerationCompleted;
         GameEvents.OnCountDownCompleted += StartTraverserGeneration;
         GameEvents.OnGameFailed += Stop;
     }
@@ -21,7 +22,7 @@ public class TraverserGenerator : MonoBehaviour
     //Revoke submission from the events
     private void OnDestroy()
     {
-        GameEvents.OnRoadGenerationCompleted -= OnRoadGenerationCompleted;
+        GameEvents.OnPathGenerationCompleted -= OnPathGenerationCompleted;
         GameEvents.OnCountDownCompleted -= StartTraverserGeneration;
         GameEvents.OnGameFailed -= Stop;
     }
@@ -32,7 +33,7 @@ public class TraverserGenerator : MonoBehaviour
     }
 
     //Cache the path data to pass to generated traversers
-    private void OnRoadGenerationCompleted(Transform[] path)
+    private void OnPathGenerationCompleted(List<Transform> path)
     {
         _generatedPath = path;
     }

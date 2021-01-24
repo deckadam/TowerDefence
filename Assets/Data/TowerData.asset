@@ -16,25 +16,32 @@ MonoBehaviour:
   - prefab: {fileID: 7586416167574296073, guid: 6e2be4a9616d4554b9348f2a9542f097,
       type: 3}
     cost: 50
-    damagePerSecond: 10
+    damagePerSecond: 40
     range: 1.5
+    attackDuration: 1.5
   - prefab: {fileID: 7586416167574296073, guid: 45b74f3c8f79ace488910b6ad8c74960,
       type: 3}
     cost: 75
-    damagePerSecond: 20
+    damagePerSecond: 55
     range: 2
+    attackDuration: 1.25
   - prefab: {fileID: 7586416167574296073, guid: 82d0091707ff1f741b093c66f6c96cce,
       type: 3}
     cost: 100
-    damagePerSecond: 40
+    damagePerSecond: 70
     range: 2.5
+    attackDuration: 1
   - prefab: {fileID: 7586416167574296073, guid: b22830e19920cf14197d450011f13062,
       type: 3}
     cost: 150
-    damagePerSecond: 75
+    damagePerSecond: 85
     range: 3
+    attackDuration: 0.75
   - prefab: {fileID: 7586416167574296073, guid: 130f9adf3d45cd04a8a1891a959d9ac3,
       type: 3}
     cost: 250
     damagePerSecond: 100
     range: 3.5
+    attackDuration: 0.5
+  bulletPrefab: {fileID: 5457575921341429570, guid: 8f605fbcedef23b4685d9b0f879da098,
+    type: 3}

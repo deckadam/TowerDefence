@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Net;
+﻿using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -13,15 +11,16 @@ public class InGameMenu : Menu
     [SerializeField] private float lastFadeDuration;
     [SerializeField] private TextMeshProUGUI countDownText;
 
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI coinText;
-
     [SerializeField] private RectTransform bottomPanel;
     [SerializeField] private float bottomPanelAnimationDuration;
 
     [SerializeField] private Button randomTowerGenerationButton;
+    [SerializeField] private TextMeshProUGUI towerCostText;
+    [SerializeField] private string towerGenerateTextHeader;
+    [SerializeField] private string onTowersMaxedText;
 
     private Vector2 _bottomPanelStartingPosition;
+    private int _currentTowerCost;
 
     //Subscribe to necessary events and cache the components
     protected override void Awake()
@@ -30,11 +29,13 @@ public class InGameMenu : Menu
 
         randomTowerGenerationButton.interactable = false;
         randomTowerGenerationButton.onClick.AddListener(() => GameEvents.OnGenerateTowerButtonPressed?.Invoke());
-        
+
         _bottomPanelStartingPosition = bottomPanel.anchoredPosition;
 
         GameEvents.OnGameStarted += StartCountDown;
         GameEvents.OnGameFailed += HideInGameUI;
+        GameEvents.OnTowerLevelChanged += SetCurrentCost;
+        GameEvents.OnMoneyAmountChanged += OnMoneyAmountChanged;
     }
 
     //Revoke submission to necessary events 
@@ -42,6 +43,30 @@ public class InGameMenu : Menu
     {
         GameEvents.OnGameStarted -= StartCountDown;
         GameEvents.OnGameFailed -= HideInGameUI;
+        GameEvents.OnTowerLevelChanged -= SetCurrentCost;
+        GameEvents.OnMoneyAmountChanged -= OnMoneyAmountChanged;
+    }
+
+    //Sets the current cost of the tower to create
+    //-1 indicates towers are maxed out so the displayed text changed accordingly
+    private void SetCurrentCost(int level, int cost)
+    {
+        if (level == -1)
+        {
+            towerCostText.text = onTowersMaxedText;
+        }
+        else
+        {
+            _currentTowerCost = cost;
+            towerCostText.text = towerGenerateTextHeader + cost;
+        }
+    }
+
+    //Sets interactable status according to tower to be created to be affordable or not
+    private void OnMoneyAmountChanged(int amount)
+    {
+        var status = MoneyManager.ins.IsAffordable(_currentTowerCost);
+        randomTowerGenerationButton.interactable = status;
     }
 
     //Start the count down coroutine
@@ -65,7 +90,6 @@ public class InGameMenu : Menu
 
         countDownText.DOFade(0f, lastFadeDuration).OnComplete(() =>
         {
-            
             GameEvents.OnCountDownCompleted?.Invoke();
             ShowInGameUI();
         });
@@ -80,11 +104,14 @@ public class InGameMenu : Menu
         countDownText.transform.localScale = Vector3.one * 0.5f;
         countDownText.transform.DOScale(1f, 0.8f);
     }
+
+    //Opening animation for bottom panel
     private void ShowInGameUI()
     {
         bottomPanel.DOAnchorPos(Vector2.zero, bottomPanelAnimationDuration).OnComplete(() => randomTowerGenerationButton.interactable = true);
     }
 
+    //Closing animation for bottom panel
     private void HideInGameUI()
     {
         randomTowerGenerationButton.interactable = false;

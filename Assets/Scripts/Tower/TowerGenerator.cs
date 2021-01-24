@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,6 +32,12 @@ public class TowerGenerator : MonoBehaviour
         GameEvents.OnNeighboursGenerated -= OnNeighboursGenerated;
     }
 
+    //Setting the current datas across all listeners
+    private void Start()
+    {
+        GameEvents.OnTowerLevelChanged?.Invoke(_currentSpawnLevel, _currentTowerCost);
+    }
+
     //When neighbours are generated generate necessary data
     private void OnNeighboursGenerated(List<Transform> neighbours)
     {
@@ -52,19 +59,16 @@ public class TowerGenerator : MonoBehaviour
 
         CreateTower(pos, temp);
 
-        CheckCurrentLevelStatus();
         MoneyManager.ins.ReduceMoney(_currentTowerCost);
+        CheckCurrentLevelStatus();
     }
 
     //Actual tower creation part
     private void CreateTower(Vector3 pos, Transform target)
     {
-        var currentData = data.towerLevels[_currentSpawnLevel];
-
         var newTower = Instantiate(data.towerLevels[_currentSpawnLevel].prefab, pos, Quaternion.identity);
         newTower.transform.SetParent(target, true);
-        newTower.Initialize(currentData.range, currentData.damagePerSecond);
-
+        newTower.Initialize(data, _currentSpawnLevel);
         _currentTowerBatch.Add(target);
     }
 
@@ -94,11 +98,28 @@ public class TowerGenerator : MonoBehaviour
     private void CheckCurrentLevelStatus()
     {
         if (_availableTowerSpots.Count != 0) return;
-        if (data.towerLevels.Length <= _currentSpawnLevel + 1) return;
+        if (data.towerLevels.Length <= _currentSpawnLevel + 1)
+        {
+            _currentSpawnLevel = -1;
+            _currentTowerCost = -1;
+        }
+        else
+        {
+            _currentSpawnLevel++;
+            _currentTowerCost = data.towerLevels[_currentSpawnLevel].cost;
+            _availableTowerSpots = new List<Transform>(_currentTowerBatch);
+            _currentTowerBatch.Clear();
+        }
 
-        _currentSpawnLevel++;
-        _currentTowerCost = data.towerLevels[_currentSpawnLevel].cost;
-        _availableTowerSpots = new List<Transform>(_currentTowerBatch);
-        _currentTowerBatch.Clear();
+        GameEvents.OnTowerLevelChanged?.Invoke(_currentSpawnLevel, _currentTowerCost);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_availableTowerSpots != null)
+            foreach (var spot in _availableTowerSpots)
+            {
+                Gizmos.DrawCube(spot.position, Vector3.one);
+            }
     }
 }

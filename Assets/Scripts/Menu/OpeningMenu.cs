@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +10,16 @@ public class OpeningMenu : Menu
     protected override void Awake()
     {
         base.Awake();
-        GameEvents.OnRoadGenerationCompleted += EnableStartTheGameButton;
+        GameEvents.OnPathGenerationCompleted += EnableStartTheGameButton;
         startTheGameButton.interactable = false;
     }
 
     private void OnDestroy()
     {
-        GameEvents.OnRoadGenerationCompleted -= EnableStartTheGameButton;
+        GameEvents.OnPathGenerationCompleted -= EnableStartTheGameButton;
     }
 
-    private void EnableStartTheGameButton(Transform[] param)
+    private void EnableStartTheGameButton(List<Transform> param)
     {
         startTheGameButton.interactable = true;
     }

@@ -10,6 +10,9 @@ public abstract class Menu : MonoBehaviour
     protected Action OnHideCompleted;
     protected Action OnShowCompleted;
 
+    protected Action OnShowStarted;
+    protected Action OnHideStarted;
+
     private RectTransform _rectTransform;
 
     //Caches the rect transform
@@ -21,6 +24,7 @@ public abstract class Menu : MonoBehaviour
     //Show implementation of IMenu
     public void Show(Action onComplete = null)
     {
+        OnShowStarted?.Invoke();
         _rectTransform.DOAnchorPos(Vector2.zero, panelTransitionDuration)
             .SetDelay(panelTransitionDelay)
             .OnComplete(() =>
@@ -33,6 +37,7 @@ public abstract class Menu : MonoBehaviour
     //Hide implementation of IMenu
     public void Hide(Action onComplete = null)
     {
+        OnHideStarted?.Invoke();
         _rectTransform.DOAnchorPos(Vector2.left * 2500f, panelTransitionDuration)
             .SetDelay(panelTransitionDelay)
             .OnComplete(() =>

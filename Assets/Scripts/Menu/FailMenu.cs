@@ -18,11 +18,8 @@ public class FailMenu : Menu
     {
         base.Awake();
         resetButton.interactable = false;
-        OnShowCompleted += () =>
-        {
-            scoreText.text = scoreHeader + ScoreManager.ins.GetScore();
-            resetButton.interactable = true;
-        };
+        OnShowStarted += () => scoreText.text = scoreHeader + ScoreManager.ins.GetScore();
+        OnShowCompleted += () => resetButton.interactable = true;
     }
 
     //Triggered from ui event

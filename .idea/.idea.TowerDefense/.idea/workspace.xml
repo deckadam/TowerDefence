@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87160c5c-b97c-4d8e-8f37-43f0788ca4d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Bullet.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Bullet.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/TraverserMaterial 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/TraverserMaterial 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/TraverserMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/TraverserMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/TowerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/TowerData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Traverser.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Traverser.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Traverser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Traverser.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/OpeningMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/OpeningMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/Traverser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +60,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/GameEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Menu/OpeningMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserGenerator.cs" />
@@ -91,6 +67,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/MapGeneration/PathGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nJHf3H9FzuJpwN0EsxKkHEjZUS" />
@@ -137,6 +114,14 @@
       <option name="presentableId" value="Default" />
       <updated>1611101376744</updated>
     </task>
+    <task id="LOCAL-00001" summary="Tower shooting projectiles added, Path generation code cleaned, Neighbour finding bug fixed, Some adjustments made">
+      <created>1611458807578</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611458807578</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -155,5 +140,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Tower shooting projectiles added, Path generation code cleaned, Neighbour finding bug fixed, Some adjustments made" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tower shooting projectiles added, Path generation code cleaned, Neighbour finding bug fixed, Some adjustments made" />
   </component>
 </project>

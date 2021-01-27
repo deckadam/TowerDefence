@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425bb381951f4a92a475740308dadc99, type: 3}
   m_Name: GridData
   m_EditorClassIdentifier: 
-  columnCount: 5
-  rowCount: 9
+  columnCount: 13
+  rowCount: 13
   cellSize: 1

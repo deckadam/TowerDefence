@@ -20,14 +20,13 @@ public class GameManager : MonoSingleton<GameManager>
         GameEvents.OnFinalDestinationReached -= RaiseOnGameFailed;
     }
 
-    //For testing purpose to see if the grid and road generation is working with different parameters
-    private void Update()
+    //Resets the level
+    //Triggered from ui
+    public void ResetLevel()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
 
     //Hide the menus other than fail menu 
     //Show fail menu

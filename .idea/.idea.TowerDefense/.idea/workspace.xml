@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87160c5c-b97c-4d8e-8f37-43f0788ca4d8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TowerDefense/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="87160c5c-b97c-4d8e-8f37-43f0788ca4d8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +53,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/DataTracker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyTracker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Bullet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Traverser/TraverserData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/ScoreManager.cs" />
@@ -68,6 +65,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GeneralSystems/MoneyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/TowerGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tower/Tower.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Menu/Menu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Menu/FailMenu.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nJHf3H9FzuJpwN0EsxKkHEjZUS" />
